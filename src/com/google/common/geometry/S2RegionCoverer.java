@@ -492,13 +492,17 @@ public final strictfp class S2RegionCoverer {
     candidatesCreatedCounter = 0;
 
     getInitialCandidates();
-    while (!candidateQueue.isEmpty() && (!interiorCovering || result.size() < maxCells)) {
-      Candidate candidate = candidateQueue.poll().candidate;
+    while (!candidateQueue.isEmpty() &&                       //While the queue isn't empty AND
+            (!interiorCovering || result.size() < maxCells)   // (We aren't making an internal covering OR have reached max cells)
+    ) {
+      Candidate candidate = candidateQueue.poll().candidate;  //get a candidate
       // logger.info("Pop: " + candidate.cell.id());
-      if (candidate.cell.level() < minLevel || candidate.numChildren == 1
-          || result.size() + (interiorCovering ? 0 : candidateQueue.size()) + candidate.numChildren
-              <= maxCells) {
-        // Expand this candidate into its children.
+      if (candidate.cell.level() < minLevel ||  // if cell level is below min level
+              candidate.numChildren == 1 ||     //or if the candidate only has one child
+              // or the length of the cell covering + candidate size if not interior + current candidate children is less than max cells
+              // note  (expression) ? value if true : value if false
+              result.size() + (interiorCovering ? 0 : candidateQueue.size()) + candidate.numChildren <= maxCells
+      ) { // Expand this candidate into its children.
         for (int i = 0; i < candidate.numChildren; ++i) {
           addCandidate(candidate.children[i]);
         }
