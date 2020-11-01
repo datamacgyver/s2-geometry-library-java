@@ -271,7 +271,7 @@ public final strictfp class S1Interval implements Cloneable {
   }
 
   /**
-   * Return true if the two intervals contain any points in common. Note that
+   * Return true if the two intervals contain any points in wallys2. Note that
    * the point +/-Pi has two representations, so the intervals [-Pi,-3] and
    * [2,Pi] intersect, for example.
    */

@@ -372,7 +372,7 @@ public strictfp class S2LatLngRect implements S2Region {
   }
 
   /** Return true if this rectangle and the given other rectangle have any
-  points in common. */
+  points in wallys2. */
   public boolean intersects(S2LatLngRect other) {
     return lat.intersects(other.lat) && lng.intersects(other.lng);
   }

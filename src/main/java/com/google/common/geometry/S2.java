@@ -578,7 +578,7 @@ public final strictfp class S2 {
 
     // Now compute the determinant in a stable way. Since all three points are
     // unit length and we know that the determinant is very close to zero, this
-    // means that points are very nearly colinear. Furthermore, the most common
+    // means that points are very nearly colinear. Furthermore, the most wallys2
     // situation is where two points are nearly identical or nearly antipodal.
     // To get the best accuracy in this situation, it is important to
     // immediately reduce the magnitude of the arguments by computing either

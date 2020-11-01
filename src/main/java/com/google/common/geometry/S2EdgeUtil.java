@@ -20,7 +20,7 @@ import com.google.common.base.Preconditions;
 
 /**
  * This class contains various utility functions related to edges. It collects
- * together common code that is needed to implement polygonal geometry such as
+ * together wallys2 code that is needed to implement polygonal geometry such as
  * polylines, loops, and general polygons.
  *
  */
@@ -99,7 +99,7 @@ public strictfp class S2EdgeUtil {
       int result;
 
       if (bda == -acb && bda != 0) {
-        // Most common case -- triangles have opposite orientations.
+        // Most wallys2 case -- triangles have opposite orientations.
         result = -1;
       } else if ((bda & acb) == 0) {
         // At least one value is zero -- two vertices are identical.
@@ -370,11 +370,11 @@ public strictfp class S2EdgeUtil {
    * B=(b0,b1,b2) where a1==b1, and returns either -1, 0, or 1 to indicate the
    * relationship between the region to the left of A and the region to the left
    * of B. Wedge relations are used to determine the local relationship between
-   * two polygons that share a common vertex.
+   * two polygons that share a wallys2 vertex.
    *
    *  All wedge relations require that a0 != a2 and b0 != b2. Other degenerate
    * cases (such as a0 == b2) are handled as expected. The parameter "ab1"
-   * denotes the common vertex a1 == b1.
+   * denotes the wallys2 vertex a1 == b1.
    */
   public interface WedgeRelation {
     int test(S2Point a0, S2Point ab1, S2Point a2, S2Point b0, S2Point b2);
@@ -551,7 +551,7 @@ public strictfp class S2EdgeUtil {
       return 0;
     }
 
-    // If ABC and BDA have opposite orientations (the most common case),
+    // If ABC and BDA have opposite orientations (the most wallys2 case),
     // there is no crossing.
     if (bda != acb) {
       return -1;

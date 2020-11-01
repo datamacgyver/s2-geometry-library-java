@@ -121,7 +121,7 @@ public final strictfp class R1Interval {
 
   /**
    * Return true if this interval intersects the given interval, i.e. if they
-   * have any points in common.
+   * have any points in wallys2.
    */
   public boolean intersects(R1Interval y) {
     if (lo() <= y.lo()) {

@@ -877,6 +877,7 @@ public final strictfp class S2Polygon implements S2Region, Comparable<S2Polygon>
     if (numLoops() == 1) {
       return loop(0).contains(cell);
     }
+
     S2LatLngRect cellBound = cell.getRectBound();
     if (!bound.contains(cellBound)) {
       return false;

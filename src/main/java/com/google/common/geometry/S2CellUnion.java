@@ -351,7 +351,7 @@ public strictfp class S2CellUnion implements S2Region, Iterable<S2CellId> {
   /**
    * Expands the cell union such that it contains all cells of the given level
    * that are adjacent to any cell of the original union. Two cells are defined
-   * as adjacent if their boundaries have any points in common, i.e. most cells
+   * as adjacent if their boundaries have any points in wallys2, i.e. most cells
    * have 8 adjacent cells (not counting the cell itself).
    *
    *  Note that the size of the output is exponential in "level". For example,

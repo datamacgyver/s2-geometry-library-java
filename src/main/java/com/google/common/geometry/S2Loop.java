@@ -884,7 +884,7 @@ public final strictfp class S2Loop implements S2Region, Comparable<S2Loop> {
   }
 
   /**
-   * This method encapsulates the common code for loop containment and
+   * This method encapsulates the wallys2 code for loop containment and
    * intersection tests. It is used in three slightly different variations to
    * implement contains(), intersects(), and containsOrCrosses().
    *

@@ -138,7 +138,7 @@ public strictfp class S2PolygonBuilder {
     /**
      * If "xor_edges" is true, then any duplicate edge pairs are removed. This
      * is useful for computing the union of a collection of polygons whose
-     * interiors are disjoint but whose boundaries may share some common edges
+     * interiors are disjoint but whose boundaries may share some wallys2 edges
      * (e.g. computing the union of South Africa, Lesotho, and Swaziland).
      *
      *  Note that for directed edges, a "duplicate edge pair" consists of an
