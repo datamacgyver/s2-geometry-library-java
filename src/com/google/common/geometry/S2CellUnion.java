@@ -17,10 +17,7 @@ package com.google.common.geometry;
 
 import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * An S2CellUnion is a region consisting of cells of various sizes. Typically a
@@ -101,6 +98,10 @@ public strictfp class S2CellUnion implements S2Region, Iterable<S2CellId> {
   /** Direct access to the underlying vector for iteration . */
   public ArrayList<S2CellId> cellIds() {
     return cellIds;
+  }
+
+  public void dedupCellIds() {
+    this.cellIds = new ArrayList<>(new HashSet<>(cellIds));
   }
 
   /**
