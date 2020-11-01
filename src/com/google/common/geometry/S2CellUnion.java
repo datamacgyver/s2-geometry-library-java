@@ -407,19 +407,11 @@ public strictfp class S2CellUnion implements S2Region, Iterable<S2CellId> {
     expand(Math.min(minLevel + maxLevelDiff, radiusLevel));
   }
 
-  @Override
-  public S2Region clone() {
-    S2CellUnion copy = new S2CellUnion();
-    copy.initRawCellIds(Lists.newArrayList(cellIds));
-    return copy;
-  }
-
-  @Override
-  public S2Cap getCapBound() {
+  public S2Point getCentroid(){
     // Compute the approximate centroid of the region. This won't produce the
     // bounding cap of minimal area, but it should be close enough.
     if (cellIds.isEmpty()) {
-      return S2Cap.empty();
+      return new S2Point();
     }
     S2Point centroid = new S2Point(0, 0, 0);
     for (S2CellId id : this) {
@@ -431,11 +423,22 @@ public strictfp class S2CellUnion implements S2Region, Iterable<S2CellId> {
     } else {
       centroid = S2Point.normalize(centroid);
     }
+    return centroid;
+  }
+  @Override
+  public S2Region clone() {
+    S2CellUnion copy = new S2CellUnion();
+    copy.initRawCellIds(Lists.newArrayList(cellIds));
+    return copy;
+  }
 
+  @Override
+  public S2Cap getCapBound() {
     // Use the centroid as the cap axis, and expand the cap angle so that it
     // contains the bounding caps of all the individual cells. Note that it is
     // *not* sufficient to just bound all the cell vertices because the bounding
     // cap may be concave (i.e. cover more than one hemisphere).
+    S2Point centroid = getCentroid();
     S2Cap cap = S2Cap.fromAxisHeight(centroid, 0);
     for (S2CellId id : this) {
       cap = cap.addCap(new S2Cell(id).getCapBound());
