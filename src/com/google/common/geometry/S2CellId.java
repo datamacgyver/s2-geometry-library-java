@@ -15,6 +15,7 @@
  */
 package com.google.common.geometry;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
 
@@ -48,7 +49,7 @@ import java.util.Locale;
  *
  *
  */
-public final strictfp class S2CellId implements Comparable<S2CellId> {
+public final strictfp class S2CellId implements Comparable<S2CellId>, Serializable {
 
   // Although only 60 bits are needed to represent the index of a leaf
   // cell, we need an extra bit in order to represent the position of

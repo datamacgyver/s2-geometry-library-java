@@ -15,6 +15,8 @@
  */
 package com.google.common.geometry;
 
+import java.io.Serializable;
+
 /**
  * An S2Region represents a two-dimensional region over the unit sphere. It is
  * an abstract interface with various concrete subtypes.
@@ -26,7 +28,7 @@ package com.google.common.geometry;
  *
  *
  */
-public interface S2Region {
+public interface S2Region extends Serializable {
 
   /** Return a bounding spherical cap. */
   public abstract S2Cap getCapBound();
@@ -48,4 +50,5 @@ public interface S2Region {
    * relationship could not be determined.
    */
   public abstract boolean mayIntersect(S2Cell cell);
+
 }
