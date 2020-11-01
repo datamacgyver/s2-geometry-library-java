@@ -186,16 +186,18 @@ public strictfp class S2CellUnion implements S2Region, Iterable<S2CellId> {
     // This is an exact test; see the comments for Contains() above.
     int pos = Collections.binarySearch(cellIds, id);
 
-    if (pos < 0) {
+    if (pos < 0) {  //Value not found so returned insertion point, make +ve to use.
       pos = -pos - 1;
     }
 
-
-    if (pos < cellIds.size() && cellIds.get(pos).rangeMin().lessOrEquals(id.rangeMax())) {
+    if (pos < cellIds.size() && cellIds.get(pos).rangeMin().lessOrEquals(id.rangeMax())) {  //Take cell at postion pos, is it's min leaf below the max of cell to match?
       return true;
     }
-    return pos != 0 && cellIds.get(pos - 1).rangeMax().greaterOrEquals(id.rangeMin());
+    return pos != 0 && cellIds.get(pos - 1).rangeMax().greaterOrEquals(id.rangeMin());  //Take cell at postion pos-1, is it's max leaf above the min of cell to match?
   }
+
+  // To translate this. We should take the range min of the minimum of every polygon and teh range max of every polygon. This is what we can compare?
+  // Note there's other tests here, pos has to be less than size max and not 0. Meaning that your to find can't be below or above max cell value  
 
   public boolean contains(S2CellUnion that) {
     // TODO(kirilll?): A divide-and-conquer or alternating-skip-search approach
@@ -585,7 +587,7 @@ public strictfp class S2CellUnion implements S2Region, Iterable<S2CellId> {
         // A necessary (but not sufficient) condition is that the XOR of the
         // four cells must be zero. This is also very fast to test.
         if ((output.get(size - 3).id() ^ output.get(size - 2).id() ^ output.get(size - 1).id())
-            != id.id()) {
+                != id.id()) {
           break;
         }
 
@@ -597,8 +599,8 @@ public strictfp class S2CellUnion implements S2Region, Iterable<S2CellId> {
         mask = ~(mask + (mask << 1));
         long idMasked = (id.id() & mask);
         if ((output.get(size - 3).id() & mask) != idMasked
-            || (output.get(size - 2).id() & mask) != idMasked
-            || (output.get(size - 1).id() & mask) != idMasked || id.isFace()) {
+                || (output.get(size - 2).id() & mask) != idMasked
+                || (output.get(size - 1).id() & mask) != idMasked || id.isFace()) {
           break;
         }
 
