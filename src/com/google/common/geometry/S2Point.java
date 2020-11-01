@@ -185,6 +185,16 @@ public strictfp class S2Point implements Comparable<S2Point> {
         + Double.toString(s2LatLng.lngDegrees()) + ")";
   }
 
+  public String toDegreesWKT() {
+    S2LatLng s2LatLng = new S2LatLng(this);
+    return "POINT (" + Double.toString(s2LatLng.lngDegrees()) + " " + Double.toString(s2LatLng.latDegrees()) + ")";
+  }
+
+    public double getlatDegrees(){
+    S2LatLng s2LatLng = new S2LatLng(this);
+    return s2LatLng.latDegrees();
+  }
+
   /**
    * Calcualates hashcode based on stored coordinates. Since we want +0.0 and
    * -0.0 to be treated the same, we ignore the sign of the coordinates.
